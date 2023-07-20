@@ -11,31 +11,6 @@ interface Message {
 const ChatApp: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
-    { content: "Hello, how can i help you", sender: "receiver" },
-    { content: "Hello", sender: "sender" },
   ])
 
   const [inputValue, setInputValue] = useState("")
@@ -92,6 +67,34 @@ const ChatApp: React.FC = () => {
   }
 
   return (
+    // <div className="chatWrapper">
+    //   <div className="chat">
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //     <h1>test</h1>
+    //   </div>
+    //   <div className="inputWrapper">
+    //     <input type="text" />
+        
+    //   </div>
+    // </div>
     <div className="chat-app">
       <div className="message-list">
         {messages.map((message, index) => (
