@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState } from "react"
 import "./Chat.css"
 import talkVideo from "./assests/talk-cropped.mp4"
 import axios from "axios"
@@ -14,8 +14,8 @@ const ChatApp: React.FC = () => {
   ])
 
   const [inputValue, setInputValue] = useState("")
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
-  const typingAnimationRef = useRef<HTMLDivElement>(null)
+  // const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  // const typingAnimationRef = useRef<HTMLDivElement>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -56,15 +56,15 @@ const ChatApp: React.FC = () => {
     setInputValue("")
   }
 
-  useEffect(() => {
-    if (typingAnimationRef.current && !isVideoLoaded) {
-      typingAnimationRef.current.classList.add("typing-animation")
-    }
-  }, [isVideoLoaded])
+  // useEffect(() => {
+  //   if (typingAnimationRef.current && !isVideoLoaded) {
+  //     typingAnimationRef.current.classList.add("typing-animation")
+  //   }
+  // }, [isVideoLoaded])
 
-  const handleVideoLoad = () => {
-    setIsVideoLoaded(true)
-  }
+  // const handleVideoLoad = () => {
+  //   setIsVideoLoaded(true)
+  // }
 
   return (
     // <div className="chatWrapper">
