@@ -1,21 +1,44 @@
-import React, { useState, useEffect, useRef } from 'react'
-import './Chat.css'
-import talkVideo from './assests/talk.mp4'
-import axios from 'axios'
+import React, { useState, useEffect, useRef } from "react"
+import "./Chat.css"
+import talkVideo from "./assests/talk-cropped.mp4"
+import axios from "axios"
 
 interface Message {
   content: string
-  sender: 'sender' | 'receiver'
+  sender: "sender" | "receiver"
 }
 
 const ChatApp: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { content: 'Hello', sender: 'receiver' },
-    { content: 'Hi there!', sender: 'sender' },
-    { content: 'How are you?', sender: 'receiver' },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
+    { content: "Hello, how can i help you", sender: "receiver" },
+    { content: "Hello", sender: "sender" },
   ])
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState("")
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const typingAnimationRef = useRef<HTMLDivElement>(null)
 
@@ -25,25 +48,15 @@ const ChatApp: React.FC = () => {
 
   const getResponse = async (inputValue: any) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/chatbot', { question: inputValue })
-      // const formData = new FormData()
-      // formData.append('question', inputValue)
-      // // const response: any = await fetch("http://172.104.206.85/chatbot", {
-      // const response: any = await fetch('http://127.0.0.1:5000/chatbot', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   // body: JSON.stringify({ question: inputValue }),
-      //   body: formData,
-      // })
-
+      const response = await axios.post("http://172.104.206.85/chatbot", {
+        question: inputValue,
+      })
       const data = await response.data
 
       console.log(data)
       const newMessage: Message = {
         content: data,
-        sender: 'receiver',
+        sender: "receiver",
       }
 
       setMessages((prevInput) => [...prevInput, newMessage])
@@ -55,22 +68,22 @@ const ChatApp: React.FC = () => {
   }
 
   const handleSendMessage = async () => {
-    if (inputValue.trim() === '') {
+    if (inputValue.trim() === "") {
       return
     }
     const newMessage: Message = {
       content: inputValue,
-      sender: 'sender',
+      sender: "sender",
     }
 
     setMessages((prevInput) => [...prevInput, newMessage])
     getResponse(inputValue)
-    setInputValue('')
+    setInputValue("")
   }
 
   useEffect(() => {
     if (typingAnimationRef.current && !isVideoLoaded) {
-      typingAnimationRef.current.classList.add('typing-animation')
+      typingAnimationRef.current.classList.add("typing-animation")
     }
   }, [isVideoLoaded])
 
@@ -79,34 +92,30 @@ const ChatApp: React.FC = () => {
   }
 
   return (
-    <div className='chat-app'>
-      <div className='message-list'>
+    <div className="chat-app">
+      <div className="message-list">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message-item ${message.sender === 'sender' ? 'sender' : 'receiver'}`}>
-            {message.sender === 'receiver' && (
-              <>
-                <video
-                  width='74'
-                  height='68'
-                  // src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
-                  src={talkVideo}
-                  // controls
-                  autoPlay
-                />
-              </>
+            className={`message-item ${
+              message.sender === "sender" ? "sender" : "receiver"
+            }`}
+          >
+            {message.sender === "receiver" && (
+              <div className="video-wrapper">
+                <video width="100%" height="100%" src={talkVideo} autoPlay />
+              </div>
             )}
-            <div className='message-content'>{message.content}</div>
+            <div className="message-content">{message.content}</div>
           </div>
         ))}
       </div>
-      <div className='input-area'>
+      <div className="input-area">
         <input
-          type='text'
+          type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder='Type your message...'
+          placeholder="Type your message..."
         />
         <button onClick={handleSendMessage}>Send</button>
       </div>
