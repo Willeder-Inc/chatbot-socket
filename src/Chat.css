@@ -113,7 +113,13 @@
   overflow: hidden;
   background-size: cover;
   background-color: aquamarine;
-  pointer-events:none;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @keyframes typing {
