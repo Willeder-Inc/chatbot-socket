@@ -23,9 +23,12 @@ const ChatApp: React.FC = () => {
 
   const getResponse = async (inputValue: any) => {
     try {
-      const response = await axios.post("http://172.104.206.85/chatbot", {
-        question: inputValue,
-      })
+      const response = await axios.post(
+        "https://senju-api.willeder.com/chatbot",
+        {
+          question: inputValue,
+        }
+      )
       const data = await response.data
 
       console.log(data)
@@ -92,7 +95,7 @@ const ChatApp: React.FC = () => {
     //   </div>
     //   <div className="inputWrapper">
     //     <input type="text" />
-        
+
     //   </div>
     // </div>
     <div className="chat-app">
