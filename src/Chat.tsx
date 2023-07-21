@@ -89,7 +89,14 @@ const ChatApp: React.FC = () => {
           >
             {message.sender === "receiver" && (
               <div className="video-wrapper">
-                <video width="100%" height="100%" src={talkVideo} autoPlay />
+                <video
+                  width="100%"
+                  height="100%"
+                  // src={talkVideo}
+                  autoPlay
+                >
+                  <source src={talkVideo} type="video/mp4"></source>
+                </video>
               </div>
             )}
             <div className="message-content">
