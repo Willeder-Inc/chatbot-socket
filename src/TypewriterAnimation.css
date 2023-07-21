@@ -1,0 +1,15 @@
+.typewriter-container {
+  /* display: inline-block; */
+  /* letter-spacing: 0.1em; */
+}
+
+.typewriter-text {
+  /* display: inline-block; */
+  animation: typing 1s steps(40, end);
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
