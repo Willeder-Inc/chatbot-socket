@@ -13,6 +13,7 @@ const TypewriterAnimation = ({ text="", minSpeed = 10, maxSpeed = 50 }:any) => {
       }, getRandomSpeed());
       return () => clearTimeout(typingTimer);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, text]);
 
   const getRandomSpeed = () => {
