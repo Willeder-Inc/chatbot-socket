@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
-import './Chat.css'
-import talkVideo from './assests/talk-cropped.mp4'
-import axios from 'axios'
-import { Loader } from '@mantine/core'
-import TypewriterAnimation from './TypewriterAnimation'
+import React, { useState, useRef, useEffect } from "react"
+import "./Chat.css"
+import talkVideo from "./assests/talk-cropped.mp4"
+import axios from "axios"
+import { Loader } from "@mantine/core"
+import TypewriterAnimation from "./TypewriterAnimation"
 
 interface Message {
   content: string
-  sender: 'sender' | 'receiver'
+  sender: "sender" | "receiver"
   status?: string
 }
 
@@ -16,14 +16,14 @@ const ChatApp: React.FC = () => {
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
   const [messages, setMessages] = useState<Message[]>([
     {
-      content: 'Hello, how can i help you',
-      sender: 'receiver',
+      content: "Hello, how can i help you",
+      sender: "receiver",
     },
   ])
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState("")
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
   useEffect(() => {
@@ -41,18 +41,21 @@ const ChatApp: React.FC = () => {
   }
 
   const getResponse = async (inputValue: any) => {
-    setStatus('loading')
+    setStatus("loading")
 
     try {
-      const response = await axios.post('https://senju-api.willeder.com/chatbot', {
-        question: inputValue,
-      })
+      const response = await axios.post(
+        "https://senju-api.willeder.com/chatbot",
+        {
+          question: inputValue,
+        }
+      )
       const data = await response.data
 
-      setStatus('success')
+      setStatus("success")
       const newMessage: Message = {
         content: data,
-        sender: 'receiver',
+        sender: "receiver",
       }
 
       setMessages((prevInput) => [...prevInput, newMessage])
@@ -62,67 +65,71 @@ const ChatApp: React.FC = () => {
   }
 
   const handleSendMessage = async () => {
-    if (inputValue.trim() === '') {
+    if (inputValue.trim() === "") {
       return
     }
     const newMessage: Message = {
       content: inputValue,
-      sender: 'sender',
+      sender: "sender",
     }
 
     setMessages((prevInput) => [...prevInput, newMessage])
     getResponse(inputValue)
-    setInputValue('')
+    setInputValue("")
   }
   return (
-    <div className='chat-app'>
-      <div className='message-list'>
+    <div className="chat-app">
+      <div className="message-list">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message-item ${message.sender === 'sender' ? 'sender' : 'receiver'}`}>
-            {message.sender === 'receiver' && (
-              <div className='video-wrapper'>
+            className={`message-item ${
+              message.sender === "sender" ? "sender" : "receiver"
+            }`}
+          >
+            {message.sender === "receiver" && (
+              <div className="video-wrapper">
                 <video
-                  // width='100%'
-                  // height='100%'
+                  width="100%"
+                  height="100%"
                   // src={talkVideo}
                   muted
                   autoPlay
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
                   loop
-                  controls>
-                  <source
-                    src={talkVideo}
-                    type='video/mp4'></source>
+                >
+                  <source src={talkVideo} type="video/mp4"></source>
                 </video>
               </div>
             )}
-            <div className='message-content'>{message.sender === 'receiver' ? <TypewriterAnimation text={message.content} /> : message.content}</div>
+            <div className="message-content">
+              {message.sender === "receiver" ? (
+                <TypewriterAnimation text={message.content} />
+              ) : (
+                message.content
+              )}
+            </div>
           </div>
         ))}
-        {status === 'loading' ? (
+        {status === "loading" ? (
           <>
-            <div className='message-item receiver'>
-              <div className='video-wrapper'>
+            <div className="message-item receiver">
+              <div className="video-wrapper">
                 <video
-                  width='100%'
-                  height='100%'
-                  src={talkVideo}
+                  width="100%"
+                  height="100%"
+                  // src={talkVideo}
                   autoPlay
                   muted
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
-                  loop
-                  controls
-                />
+                >
+                  <source src={talkVideo} type="video/mp4"></source>
+                </video>
               </div>
-              <div className='message-content'>
-                <Loader
-                  variant='dots'
-                  size={'xs'}
-                />
+              <div className="message-content">
+                <Loader variant="dots" size={"xs"} />
               </div>
             </div>
           </>
@@ -131,12 +138,12 @@ const ChatApp: React.FC = () => {
         )}
         <div ref={messagesEndRef} />
       </div>
-      <div className='input-area'>
+      <div className="input-area">
         <input
-          type='text'
+          type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder='Type your message...'
+          placeholder="Type your message..."
           onKeyDown={handleKeyDown}
         />
         <button onClick={handleSendMessage}>Send</button>
