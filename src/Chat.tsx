@@ -84,13 +84,15 @@ const ChatApp: React.FC = () => {
             {message.sender === 'receiver' && (
               <div className='video-wrapper'>
                 <video
-                  width='100%'
-                  height='100%'
+                  // width='100%'
+                  // height='100%'
                   // src={talkVideo}
+                  muted
                   autoPlay
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
-                  muted>
+                  loop
+                  controls>
                   <source
                     src={talkVideo}
                     type='video/mp4'></source>
@@ -109,6 +111,11 @@ const ChatApp: React.FC = () => {
                   height='100%'
                   src={talkVideo}
                   autoPlay
+                  muted
+                  // onContextMenu={(e) => e.preventDefault()}
+                  playsInline
+                  loop
+                  controls
                 />
               </div>
               <div className='message-content'>
