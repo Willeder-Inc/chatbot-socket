@@ -94,7 +94,7 @@ const ChatApp: React.FC = () => {
                   height="100%"
                   // src={talkVideo}
                   autoPlay
-                  onContextMenu={(e) => e.preventDefault()}
+                  // onContextMenu={(e) => e.preventDefault()}
                   playsInline
                 >
                   <source src={talkVideo} type="video/mp4"></source>
