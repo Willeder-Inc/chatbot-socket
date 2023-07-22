@@ -97,7 +97,7 @@ const ChatApp: React.FC = () => {
                   autoPlay
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
-                  loop
+                  // loop
                 >
                   <source src={talkVideo} type="video/mp4"></source>
                 </video>
