@@ -107,17 +107,6 @@ const ChatApp: React.FC = () => {
                     <source src={talkVideo} type="video/mp4"></source>
                   </video>
                 </div>
-                {/* <button
-                  onClick={() => {
-                    const video: HTMLVideoElement | null =
-                      document.querySelector(`#video${index}`)
-                    if (video) {
-                      video.play()
-                    }
-                  }}
-                >
-                  Play/Pause
-                </button> */}
               </>
             )}
             <div className="message-content">
