@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./Chat.css"
-import talkVideo from "./assests/talk-cropped.mp4"
+import { ReactComponent as SendLogo } from "./assests/send-icon.svg"
+import talkVideo from "./assests/talk.mp4"
 import axios from "axios"
 import { Loader } from "@mantine/core"
 import TypewriterAnimation from "./TypewriterAnimation"
@@ -124,6 +125,7 @@ const ChatApp: React.FC = () => {
                   muted
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
+                  preload="auto"
                 >
                   <source src={talkVideo} type="video/mp4"></source>
                 </video>
@@ -145,8 +147,11 @@ const ChatApp: React.FC = () => {
           onChange={handleInputChange}
           placeholder="Type your message..."
           onKeyDown={handleKeyDown}
+          disabled={status === "loading"}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button onClick={handleSendMessage} disabled={status === "loading"}>
+          <SendLogo width={60} height={60} className="logo" />
+        </button>
       </div>
     </div>
   )

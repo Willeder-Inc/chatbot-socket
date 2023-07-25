@@ -105,14 +105,14 @@
 }
 
 .video-wrapper {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   min-width: 70px;
   min-height: 70px;
-  border-radius: 50%;
+  border-radius: 10px;
   overflow: hidden;
   background-size: cover;
-  background-color: aquamarine;
+  background-color: #fefdfd;
   /* pointer-events: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -160,14 +160,23 @@
   outline: none;
 }
 
+.input-area input:disabled {
+  cursor: not-allowed;
+}
+
 .input-area button {
   margin-left: 10px;
   border: none;
-  background-color: #0b9565;
-  color: white;
-  padding: 15px 25px;
+  background-color: transparent;
+  color: transparent;
+  /* padding: 15px 25px; */
   border-radius: 10px;
   cursor: pointer;
+}
+
+.input-area .logo {
+  width: 60px;
+  height: 60px;
 }
 
 @media screen and (max-width: 420px) {
@@ -176,14 +185,14 @@
   }
 
   .video-wrapper {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    min-height: 45px;
-    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
+    border-radius: 10px;
     overflow: hidden;
     background-size: cover;
-    background-color: aquamarine;
+    background-color: #fefdfd;
   }
   .input-area input {
     padding: 15px;
@@ -192,5 +201,9 @@
     color: #fff;
     border-radius: 8px;
     width: 60%;
+  }
+  .input-area .logo {
+    width: 45px;
+    height: 45px;
   }
 }
