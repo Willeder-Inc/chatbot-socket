@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./Chat.css"
 import { ReactComponent as SendLogo } from "./assests/send-icon.svg"
-import talkVideo from "./assests/talk.mp4"
+import talkVideo from "./assests/og.mp4"
 import axios from "axios"
 import { Loader } from "@mantine/core"
 import TypewriterAnimation from "./TypewriterAnimation"
