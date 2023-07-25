@@ -15,6 +15,8 @@ interface Message {
 const ChatApp: React.FC = () => {
   const [status, setStatus] = useState<string>()
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
+  const [videoLoop, setvideoLoop] = useState<boolean>(false)
+  const [chatscroll, setchatScroll] = useState<boolean>(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       content: "Hello, how can i help you",
@@ -29,7 +31,7 @@ const ChatApp: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages])
+  }, [messages, chatscroll])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -89,24 +91,42 @@ const ChatApp: React.FC = () => {
             }`}
           >
             {message.sender === "receiver" && (
-              <div className="video-wrapper">
-                <video
-                  width="100%"
-                  height="100%"
-                  // src={talkVideo}
-                  muted
-                  autoPlay
-                  // onContextMenu={(e) => e.preventDefault()}
-                  playsInline
-                  // loop
+              <>
+                <div className="video-wrapper">
+                  <video
+                    width="100%"
+                    height="100%"
+                    // src={talkVideo}
+                    muted
+                    autoPlay
+                    // onContextMenu={(e) => e.preventDefault()}
+                    playsInline
+                    id={`video${index}`}
+                    loop={videoLoop}
+                  >
+                    <source src={talkVideo} type="video/mp4"></source>
+                  </video>
+                </div>
+                {/* <button
+                  onClick={() => {
+                    const video: HTMLVideoElement | null =
+                      document.querySelector(`#video${index}`)
+                    if (video) {
+                      video.play()
+                    }
+                  }}
                 >
-                  <source src={talkVideo} type="video/mp4"></source>
-                </video>
-              </div>
+                  Play/Pause
+                </button> */}
+              </>
             )}
             <div className="message-content">
               {message.sender === "receiver" ? (
-                <TypewriterAnimation text={message.content} />
+                <TypewriterAnimation
+                  text={message.content}
+                  setScroll={setchatScroll}
+                  setVideoPlay={setvideoLoop}
+                />
               ) : (
                 message.content
               )}
@@ -121,7 +141,7 @@ const ChatApp: React.FC = () => {
                   width="100%"
                   height="100%"
                   // src={talkVideo}
-                  autoPlay
+                  // autoPlay
                   muted
                   // onContextMenu={(e) => e.preventDefault()}
                   playsInline
