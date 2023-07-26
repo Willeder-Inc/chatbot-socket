@@ -19,7 +19,7 @@ const ChatApp: React.FC = () => {
   const [chatscroll, setchatScroll] = useState<boolean>(false)
   const [messages, setMessages] = useState<Message[]>([
     {
-      content: "Hello, how can i help you",
+      content: "こんにちは、美容業界のことについて何でも聞いてください。",
       sender: "receiver",
     },
   ])
@@ -109,17 +109,39 @@ const ChatApp: React.FC = () => {
                 </div>
               </>
             )}
-            <div className="message-content">
-              {message.sender === "receiver" ? (
-                <TypewriterAnimation
-                  text={message.content}
-                  setScroll={setchatScroll}
-                  setVideoPlay={setvideoLoop}
-                />
-              ) : (
-                message.content
-              )}
-            </div>
+            {message.sender === "receiver" ? (
+              <div className="message-wrapper">
+                {message.content}
+                <div className="message-content">
+                  {message.sender === "receiver" ? (
+                    <TypewriterAnimation
+                      text={message.content}
+                      setScroll={setchatScroll}
+                      setVideoPlay={setvideoLoop}
+                    />
+                  ) : (
+                    message.content
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="message-content">{message.content}</div>
+            )}
+
+            {/* <div className="message-wrapper">
+              {message.content}
+              <div className="message-content">
+                {message.sender === "receiver" ? (
+                  <TypewriterAnimation
+                    text={message.content}
+                    setScroll={setchatScroll}
+                    setVideoPlay={setvideoLoop}
+                  />
+                ) : (
+                  message.content
+                )}
+              </div>
+            </div> */}
           </div>
         ))}
         {status === "loading" ? (
@@ -129,17 +151,14 @@ const ChatApp: React.FC = () => {
                 <video
                   width="100%"
                   height="100%"
-                  // src={talkVideo}
-                  // autoPlay
                   muted
-                  // onContextMenu={(e) => e.preventDefault()}
                   playsInline
                   preload="auto"
                 >
                   <source src={talkVideo} type="video/mp4"></source>
                 </video>
               </div>
-              <div className="message-content">
+              <div className="loader message-content">
                 <Loader variant="dots" size={"xs"} />
               </div>
             </div>

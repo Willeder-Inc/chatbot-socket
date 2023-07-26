@@ -25,11 +25,11 @@ const TypewriterAnimation = ({
       const typingTimer = setTimeout(() => {
         setCurrentText((prevText) => prevText + text[currentIndex])
         setCurrentIndex((prevIndex) => prevIndex + 1)
-        setScroll(true)
+        // setScroll(true)
       }, getRandomSpeed())
       return () => {
         clearTimeout(typingTimer)
-        setScroll(false)
+        // setScroll(false)
         setVideoPlay(false)
       }
     }

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  /* height: 100vh; */
   overflow: scroll;
   width: 60%;
 }
@@ -57,13 +56,23 @@
 }
 
 .message-item.receiver .message-content {
-  margin-left: 10px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
   background-color: #2c2b2d;
   color: #fff;
-  margin-right: 50px;
-  border: 1px solid #454145;
+}
+
+.message-item.receiver .loader.message-content {
+  position: unset;
+  top: unset;
+  left: unset;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  background-color: #2c2b2d;
+  color: #fff;
 }
 .message-item.sender .message-content {
   margin-right: 10px;
@@ -74,8 +83,42 @@
   margin-left: 50px;
 }
 
+.message-item.receiver .message-wrapper {
+  margin-left: 10px;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  background-color: #2c2b2d;
+  color: #2c2b2d;
+  margin-right: 50px;
+  border: 1px solid #454145;
+  position: relative;
+  max-width: 500px;
+}
+
+.message-item.receiver .message-wrapper {
+  margin-left: 10px;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  background-color: #2c2b2d;
+  color: #2c2b2d;
+  margin-right: 50px;
+  border: 1px solid #454145;
+  position: relative;
+  max-width: 500px;
+}
+.message-wrapper {
+  border-radius: 20px;
+  padding: 20px;
+  border-bottom-left-radius: 0px;
+  background-color: #2c2b2d;
+  color: #fff;
+  margin-right: 50px;
+  max-width: 500px;
+  position: relative;
+
+}
+
 .message-content {
-  padding: 10px;
   border-radius: 8px;
   background-color: #e0e0e0;
   color: #000;
@@ -113,13 +156,6 @@
   overflow: hidden;
   background-size: cover;
   background-color: #fefdfd;
-  /* pointer-events: none;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; */
 }
 
 @keyframes typing {
@@ -135,7 +171,6 @@
 }
 
 .input-area {
-  /* display: inline-flex; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +204,6 @@
   border: none;
   background-color: transparent;
   color: transparent;
-  /* padding: 15px 25px; */
   border-radius: 10px;
   cursor: pointer;
 }
