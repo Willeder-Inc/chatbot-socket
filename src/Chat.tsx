@@ -39,7 +39,8 @@ const ChatApp = ({
   useEffect(() => {
     if (character === "girl") {
       const newMessage: Message = {
-        content: "Hi, I am a hair saloon girl",
+        content:
+          "やあ、美容業界についてなんでも聞いてほしいんやろ？なんでも答えるから、どんなことでも聞いてくれたらうれしいな！",
         sender: "receiver",
       }
       setMessages([])
@@ -49,7 +50,8 @@ const ChatApp = ({
     }
     if (character === "boy") {
       const newMessage: Message = {
-        content: "こんにちは、美容業界のことについて何でも聞いてください。",
+        content:
+          "こんにちは！美容業界のこと、何でも聞いてくれるんだね？なんでも答えるから、遠慮せずに聞いてみてよ！",
         sender: "receiver",
       }
       setMessages([])
