@@ -1,3 +1,54 @@
+:root {
+  --message-box-send-bg-color: #1e9af1;
+  --message-box-receive-bg-color: #edf2f3;
+  --message-send-color: #fff;
+  --message-receive-color: #000;
+  --background: #fff;
+  --message-receive-color: #000;
+  --input-background-color: #edf2f3;
+  --input-color: #8e99a2;
+}
+
+[data-theme="twitter"] {
+  --message-box-send-bg-color: #1e9af1;
+  --message-box-receive-bg-color: #edf2f3;
+  --message-send-color: #fff;
+  --message-receive-color: #000;
+  --background: #fff;
+  --input-background-color: #edf2f3;
+  --input-color: #8e99a2;
+}
+
+[data-theme="instagram"] {
+  --message-box-send-bg-color: #efefef;
+  --message-box-receive-bg-color: #ffffff;
+  --message-send-color: #000;
+  --message-receive-color: #000000;
+  --background: #fff;
+  --input-background-color: #fff;
+  --input-color: #8e99a2;
+}
+
+[data-theme="line"] {
+  --message-box-send-bg-color: #6fe67bc3;
+  --message-box-receive-bg-color: #ffffff;
+  --message-send-color: #000;
+  --message-receive-color: #000;
+  --background: #8dabd8;
+  --input-background-color: #edf2f3;
+  --input-color: #8e99a2;
+}
+
+[data-theme="messenger"] {
+  --message-box-send-bg-color: linear-gradient(#e66465, #9198e5);
+  --message-box-receive-bg-color: #efefef;
+  --message-send-color: #ffffff;
+  --message-receive-color: #000;
+  --background: #fff;
+  --input-background-color: #edf2f3;
+  --input-color: #8e99a2;
+}
+
 .chatWrapper {
   display: flex;
   flex-direction: column;
@@ -22,6 +73,7 @@
   height: 100%;
   overflow: scroll;
   padding: 0px 20px;
+  background-color: var(--background);
 }
 
 .message-list::-webkit-scrollbar {
@@ -61,8 +113,10 @@
   left: 0px;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
-  background-color: #2c2b2d;
-  color: #fff;
+  background-color: var(--message-box-receive-bg-color);
+  color: var(--message-receive-color);
+  /* border: 1px solid #ff00ff; */
+  /* border: 1px solid rgba(var(--message-receive-color),1); */
 }
 
 .message-item.receiver .loader.message-content {
@@ -71,57 +125,88 @@
   left: unset;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
-  background-color: #2c2b2d;
-  color: #fff;
+  color: var(--message-receive-color);
+}
+[data-theme="instagram"] .message-item.receiver .loader.message-content {
+  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid #dadada;
+}
+[data-theme="instagram"] .message-item.receiver .message-content {
+  border-bottom-left-radius: 20px;
 }
 .message-item.sender .message-content {
   margin-right: 10px;
   border-radius: 20px;
   border-bottom-right-radius: 0px;
-  background-color: #0b9565;
-  color: #fff;
+  background-color: var(--message-box-send-bg-color);
+  color: var(--message-send-color);
+  margin-left: 50px;
+}
+[data-theme="messenger"] .message-item.sender .message-content {
+  margin-right: 10px;
+  border-radius: 20px;
+  border-bottom-right-radius: 0px;
+  background: linear-gradient(#e66465, #9198e5);
+  color: var(--message-send-color);
   margin-left: 50px;
 }
 
-.message-item.receiver .message-wrapper {
-  margin-left: 10px;
+[data-theme="instagram"] .message-item.sender .message-content {
   border-radius: 20px;
-  border-bottom-left-radius: 0px;
-  background-color: #2c2b2d;
-  color: #2c2b2d;
-  margin-right: 50px;
-  border: 1px solid #454145;
-  position: relative;
-  max-width: 500px;
+  border-bottom-right-radius: 20px;
 }
 
 .message-item.receiver .message-wrapper {
   margin-left: 10px;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
+  background-color: var(--message-box-receive-bg-color);
+  color: var(--message-box-receive-bg-color);
+  margin-right: 50px;
+  /* border: 1px solid #454145; */
+  /* border: 1px solid
+    color-mix(
+      in srgb var(--message-receive-color) 80%,
+      var(--message-receive-color)
+    ); */
+  position: relative;
+  max-width: 500px;
+}
+
+[data-theme="instagram"] .message-item.receiver .message-wrapper {
+  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid #dadada;
+}
+
+/* .message-item.receiver .message-wrapper {
+  margin-left: 10px;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
   background-color: #2c2b2d;
   color: #2c2b2d;
   margin-right: 50px;
   border: 1px solid #454145;
   position: relative;
   max-width: 500px;
-}
+} */
 .message-wrapper {
   border-radius: 20px;
   padding: 20px;
   border-bottom-left-radius: 0px;
-  background-color: #2c2b2d;
-  color: #fff;
   margin-right: 50px;
   max-width: 500px;
   position: relative;
-
+}
+[data-theme="instagram"] .message-wrapper {
+  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid #dadada;
 }
 
 .message-content {
   border-radius: 8px;
-  background-color: #e0e0e0;
-  color: #000;
   max-width: 500px;
   text-align: left;
   padding: 20px;
@@ -131,21 +216,21 @@
   margin-left: 10px;
 }
 
-.talking-animation {
+/* .talking-animation {
   width: 100%;
   height: auto;
   max-height: 200px;
   margin-bottom: 10px;
-}
+} */
 
-.typing-animation {
+/* .typing-animation {
   width: 100px;
   height: 20px;
   margin-right: 10px;
-  background-color: #e0e0e0;
+  background-color: #ff6161;
   animation: typing 1s infinite;
   opacity: 0.5;
-}
+} */
 
 .video-wrapper {
   width: 110px;
@@ -155,7 +240,7 @@
   border-radius: 10px;
   overflow: hidden;
   background-size: cover;
-  background-color: #fefdfd;
+  /* background-color: #ff0000; */
 }
 
 @keyframes typing {
@@ -175,20 +260,48 @@
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  background-color: #2c2b2d;
+  background-color: #fff;
+  border-top: 1px solid #edf1f3;
   bottom: 0px;
   position: absolute;
   width: 100%;
   max-width: 100%;
 }
 
+[data-theme="twitter"] .input-area {
+  background-color: #fff;
+  border-top: 1px solid #edf1f3;
+}
+
+[data-theme="line"] .input-area {
+  background-color: #fff;
+  border-top: 1px solid #edf1f3;
+}
+
+[data-theme="instagram"] .input-area {
+  background-color: #fff;
+  border-top: 1px solid #edf1f3;
+}
+
+[data-theme="messenger"] .input-area {
+  background-color: #fff;
+  border-top: 1px solid #edf1f3;
+}
+
 .input-area input {
   padding: 15px;
-  background-color: #1f1e20;
-  border: 1px solid #454145;
-  color: #fff;
+  background-color: var(--input-background-color);
+  border: 1px solid #edf1f3;
+  color: var(--input-color);
   border-radius: 8px;
   width: 70%;
+}
+
+[data-theme="line"] .input-area input {
+  border-radius: 50px;
+}
+[data-theme="instagram"] .input-area input {
+  border-radius: 50px;
 }
 
 .input-area input:focus {
@@ -208,9 +321,18 @@
   cursor: pointer;
 }
 
+[data-theme="instagram"] .input-area .logo {
+  stroke: #009af8;
+}
+
 .input-area .logo {
   width: 60px;
   height: 60px;
+  stroke: var(--message-box-send-bg-color);
+}
+
+[data-theme="messenger"] .input-area .logo {
+  stroke: #009af8;
 }
 
 @media screen and (max-width: 420px) {
@@ -230,16 +352,30 @@
     background-size: cover;
     background-color: #fefdfd;
   }
+
   .input-area input {
     padding: 15px;
-    background-color: #1f1e20;
-    border: 1px solid #454145;
-    color: #fff;
+    background-color: var(--input-background-color);
+    /* border: 1px solid #454145; */
+    color: var(--input-color);
     border-radius: 8px;
     width: 60%;
   }
+
+  [data-theme="instagram"] .input-area {
+    background-color: #fff;
+    border-top: 1px solid #edf1f3;
+  }
+
+  [data-theme="instagram"] .message-wrapper {
+    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid #dadada;
+  }
+
   .input-area .logo {
     width: 45px;
     height: 45px;
+    stroke: var(--message-box-send-bg-color);
   }
 }

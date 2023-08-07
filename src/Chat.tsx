@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./Chat.css"
 import { ReactComponent as SendLogo } from "./assests/send-icon.svg"
-import talkVideo from "./assests/og.mp4"
+import boyVideo from "./assests/og.mp4"
+import girlVideo from "./assests/girl.mp4"
+
 import axios from "axios"
 import { Loader } from "@mantine/core"
 import TypewriterAnimation from "./TypewriterAnimation"
@@ -12,17 +14,18 @@ interface Message {
   status?: string
 }
 
-const ChatApp: React.FC = () => {
+const ChatApp = ({
+  theme,
+  character,
+}: {
+  theme: string
+  character: string
+}) => {
   const [status, setStatus] = useState<string>()
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
   const [videoLoop, setvideoLoop] = useState<boolean>(false)
   const [chatscroll, setchatScroll] = useState<boolean>(false)
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      content: "こんにちは、美容業界のことについて何でも聞いてください。",
-      sender: "receiver",
-    },
-  ])
+  const [messages, setMessages] = useState<Message[]>([])
 
   const [inputValue, setInputValue] = useState("")
   const scrollToBottom = () => {
@@ -32,6 +35,29 @@ const ChatApp: React.FC = () => {
   useEffect(() => {
     scrollToBottom()
   }, [messages, chatscroll])
+
+  useEffect(() => {
+    if (character === "girl") {
+      const newMessage: Message = {
+        content: "Hi, I am a hair saloon girl",
+        sender: "receiver",
+      }
+      setMessages([])
+      setTimeout(() => {
+        setMessages([newMessage])
+      }, 500)
+    }
+    if (character === "boy") {
+      const newMessage: Message = {
+        content: "こんにちは、美容業界のことについて何でも聞いてください。",
+        sender: "receiver",
+      }
+      setMessages([])
+      setTimeout(() => {
+        setMessages([newMessage])
+      }, 500)
+    }
+  }, [character])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -45,12 +71,18 @@ const ChatApp: React.FC = () => {
 
   const getResponse = async (inputValue: any) => {
     setStatus("loading")
-
+    let avatartype: number = 0
+    if (character === "boy") {
+      avatartype = 0
+    } else {
+      avatartype = 1
+    }
     try {
       const response = await axios.post(
         "https://senju-api.willeder.com/chatbot",
         {
           question: inputValue,
+          avatarType: avatartype,
         }
       )
       const data = await response.data
@@ -81,7 +113,7 @@ const ChatApp: React.FC = () => {
     setInputValue("")
   }
   return (
-    <div className="chat-app">
+    <div className="chat-app" data-theme={theme}>
       <div className="message-list">
         {messages.map((message, index) => (
           <div
@@ -96,15 +128,17 @@ const ChatApp: React.FC = () => {
                   <video
                     width="100%"
                     height="100%"
-                    // src={talkVideo}
                     muted
                     autoPlay
-                    // onContextMenu={(e) => e.preventDefault()}
                     playsInline
                     id={`video${index}`}
                     loop={videoLoop}
                   >
-                    <source src={talkVideo} type="video/mp4"></source>
+                    {character === "boy" ? (
+                      <source src={boyVideo} type="video/mp4"></source>
+                    ) : (
+                      <source src={girlVideo} type="video/mp4"></source>
+                    )}
                   </video>
                 </div>
               </>
@@ -127,21 +161,6 @@ const ChatApp: React.FC = () => {
             ) : (
               <div className="message-content">{message.content}</div>
             )}
-
-            {/* <div className="message-wrapper">
-              {message.content}
-              <div className="message-content">
-                {message.sender === "receiver" ? (
-                  <TypewriterAnimation
-                    text={message.content}
-                    setScroll={setchatScroll}
-                    setVideoPlay={setvideoLoop}
-                  />
-                ) : (
-                  message.content
-                )}
-              </div>
-            </div> */}
           </div>
         ))}
         {status === "loading" ? (
@@ -155,7 +174,11 @@ const ChatApp: React.FC = () => {
                   playsInline
                   preload="auto"
                 >
-                  <source src={talkVideo} type="video/mp4"></source>
+                  {character === "boy" ? (
+                    <source src={boyVideo} type="video/mp4"></source>
+                  ) : (
+                    <source src={girlVideo} type="video/mp4"></source>
+                  )}
                 </video>
               </div>
               <div className="loader message-content">
