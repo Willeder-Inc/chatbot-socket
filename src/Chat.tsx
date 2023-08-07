@@ -84,7 +84,7 @@ const ChatApp = ({
         "https://senju-api.willeder.com/chatbot",
         {
           question: inputValue,
-          avatarType: avatartype,
+          avatorType: avatartype,
         }
       )
       const data = await response.data
