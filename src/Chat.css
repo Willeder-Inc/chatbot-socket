@@ -86,7 +86,9 @@
   max-height: 100%;
   /* position: absolute; */
   bottom: 200px;
-  width: 60%;
+  /* width: 60%; */
+  width: 100%;
+
   margin-top: 60px;
 
   margin-bottom: 90px;
@@ -191,6 +193,7 @@
   position: relative;
   max-width: 500px;
 } */
+
 .message-wrapper {
   border-radius: 20px;
   padding: 20px;
@@ -199,6 +202,7 @@
   max-width: 500px;
   position: relative;
 }
+
 [data-theme="instagram"] .message-wrapper {
   border-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -300,6 +304,7 @@
 [data-theme="line"] .input-area input {
   border-radius: 50px;
 }
+
 [data-theme="instagram"] .input-area input {
   border-radius: 50px;
 }

@@ -2,8 +2,9 @@
   text-align: center;
   background-color: #ffffff;
   /* height: 100vh; */
-  height: 100dvh;
+  /* height: 100dvh; */
   color: #ffffff;
   position: relative;
   overflow: hidden;
+  padding: 30px;
 }
