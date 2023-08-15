@@ -7,8 +7,6 @@ import { ReactComponent as TwitterLogo } from "./assests/icons/twitter.svg"
 import { ReactComponent as LineLogo } from "./assests/icons/line.svg"
 import { ReactComponent as MessengerLogo } from "./assests/icons/messenger.svg"
 import { ReactComponent as InstagramLogo } from "./assests/icons/ig.svg"
-
-import { Select } from "@mantine/core"
 interface HeaderProps {
   theme: string
   setTheme: React.Dispatch<React.SetStateAction<string>>
