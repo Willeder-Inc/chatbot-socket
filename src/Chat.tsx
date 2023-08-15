@@ -1,11 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./Chat.scss"
-import { ReactComponent as SendLogo } from "./assests/send-icon.svg"
-
-import { ReactComponent as TwitterLogo } from "./assests/icons/twitter.svg"
-import { ReactComponent as LineLogo } from "./assests/icons/line.svg"
-import { ReactComponent as MessengerLogo } from "./assests/icons/messenger.svg"
-import { ReactComponent as InstagramLogo } from "./assests/icons/ig.svg"
 
 import { ReactComponent as TwitterGif } from "./assests/icons/twitter/gif.svg"
 import { ReactComponent as TwitterImage } from "./assests/icons/twitter/image.svg"
@@ -58,10 +52,6 @@ interface Message {
   status?: string
 }
 
-type Option = {
-  label: React.ReactNode
-  value: string
-} | null
 
 const ChatApp = ({
   theme,
