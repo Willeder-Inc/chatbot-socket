@@ -8,6 +8,7 @@ import { ReactComponent as LineLogo } from "./assests/icons/line.svg"
 import { ReactComponent as MessengerLogo } from "./assests/icons/messenger.svg"
 import { ReactComponent as InstagramLogo } from "./assests/icons/ig.svg"
 
+import { Select } from "@mantine/core"
 interface HeaderProps {
   theme: string
   setTheme: React.Dispatch<React.SetStateAction<string>>
@@ -76,8 +77,8 @@ const Header = ({ theme, setTheme, setCharacter }: HeaderProps) => {
     // You can handle the selected option here or pass it to the parent component
   }
   return (
-    <header className={`header ${theme}`}>
-      <h3>Senjyu Chatbot</h3>
+    <header className={`headerT`}>
+      {/* <h3>Senjyu Chatbot</h3> */}
       {/* <select
         id="theme"
         onChange={(e) => setTheme(e.target.value)}
