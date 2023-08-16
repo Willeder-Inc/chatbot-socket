@@ -268,7 +268,7 @@
   margin-right: 10px;
   border-radius: 20px;
   border-bottom-right-radius: 0px;
-  // background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#e66465, #9198e5);
   color: var(--message-send-color);
   margin-left: 50px;
 }
@@ -395,6 +395,19 @@
 
 [data-theme="instagram"] .input-area:focus-within .input-container .logo {
   stroke-width: 6px;
+}
+
+[data-theme="twitter"] .input-area:not(:focus-within) .input-container {
+  width: 90%;
+}
+[data-theme="line"] .input-area:not(:focus-within) .input-container {
+  width: 60%;
+}
+[data-theme="messenger"] .input-area:not(:focus-within) .input-container {
+  width: 48%;
+}
+[data-theme="instagram"] .input-area:not(:focus-within) .input-container {
+  width: 90%;
 }
 
 .input-area input {

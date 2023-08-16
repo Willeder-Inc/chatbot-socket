@@ -1,6 +1,17 @@
 .iphone {
   width: 100%;
-  /* flex: 10; */
   position: relative;
-  top: 60px;
+  top: 10px;
+}
+
+@media all and (max-width: 840px) {
+  .iphone {
+    top: 60px;
+  }
+}
+
+@media all and (min-width: 1600px) {
+  .iphone {
+    top: 150px;
+  }
 }

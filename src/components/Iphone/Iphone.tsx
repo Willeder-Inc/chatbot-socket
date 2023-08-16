@@ -9,7 +9,7 @@ interface IphoneProps {
 const Iphone = ({ children }: IphoneProps) => {
   return (
     <div className="iphone">
-      {/* <div className="marvel-device iphone-x">
+      <div className="marvel-device iphone-x">
         <div className="notch">
           <div className="camera"></div>
           <div className="speaker"></div>
@@ -26,9 +26,9 @@ const Iphone = ({ children }: IphoneProps) => {
         </div>
         <div className="inner-shadow"></div>
         <div className="screen">{children}</div>
-      </div> */}
+      </div>
 
-      <div className="temp-wrapper">
+      {/* <div className="temp-wrapper">
         <div className="px">
           <div className="px__body">
             <div className="px__body__cut"></div>
@@ -45,7 +45,6 @@ const Iphone = ({ children }: IphoneProps) => {
             <div className="px__screen__">
               <div
                 className="px__screen__frame"
-                // style="background-image: url('https://thestraightshooterband.com/image/8989-full_oboi-oboi-macbook-oboi-iphone-4k-5k-macbook-pro-iphone.jpg')"
               >
                 {children}
                 <i className="fa fa-apple"></i>
@@ -53,7 +52,7 @@ const Iphone = ({ children }: IphoneProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <div className="temp-wrapper temp-wrapper--wide">
         <div className="px px--ls">

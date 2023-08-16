@@ -408,8 +408,8 @@ const ChatApp = ({
       ) : null}
 
       {theme === "messenger" ? (
-        <div className="input-area">
-          <div className="outer-icons">
+        <div className="input-area" >
+          <div className="outer-icons" >
             <MessengerPlus className="messenger-logo" />
             <MessengerImage className="messenger-logo" />
             <MessengerGif className="messenger-logo" />

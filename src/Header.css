@@ -46,3 +46,11 @@
   width: 30px;
   border-radius: 50%;
 }
+
+
+@media all and (max-width: 840px) {
+.headerT{
+  top: 0%;
+  left: 80%;
+}
+}
