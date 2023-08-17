@@ -42,9 +42,15 @@ import girlIcon from "./assests/icons/girl.png"
 import boyVideo from "./assests/og.mp4"
 import girlVideo from "./assests/girl.mp4"
 
-import axios from "axios"
+// import axios from "axios"
 import { Loader } from "@mantine/core"
 import TypewriterAnimation from "./TypewriterAnimation"
+
+import { io } from "socket.io-client"
+
+const URL = "https://express-socket-hyg3.onrender.com/"
+
+export const socket = io(URL)
 
 interface Message {
   content: string
@@ -63,45 +69,38 @@ const ChatApp = ({
   setCharacter: React.Dispatch<React.SetStateAction<string>>
   character: string
 }) => {
-  const [status, setStatus] = useState<string>()
-  const messagesEndRef = useRef<null | HTMLDivElement>(null)
+  const [status, setStatus] = useState<string>("success")
   const [videoLoop, setvideoLoop] = useState<boolean>(false)
-  const [chatscroll, setchatScroll] = useState<boolean>(false)
   const [messages, setMessages] = useState<Message[]>([])
+  const [chatscroll, setchatScroll] = useState<boolean>(false)
+  const messagesEndRef = useRef<null | HTMLDivElement>(null)
 
   const [inputValue, setInputValue] = useState("")
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages, chatscroll])
+    socket.on("receiveMessage", (message) => {
+      console.log(message)
+      const newMessage: Message = {
+        content: message,
+        sender: "receiver",
+      }
+      setMessages((prevInput) => [...prevInput, newMessage])
+      setStatus("success")
+    })
+    // eslint-disable-next-line
+  }, [socket])
 
   useEffect(() => {
-    if (character === "girl") {
-      const newMessage: Message = {
-        content:
-          "やあ、美容業界についてなんでも聞いてほしいんやろ？なんでも答えるから、どんなことでも聞いてくれたらうれしいな！",
-        sender: "receiver",
-      }
-      setMessages([])
-      setTimeout(() => {
-        setMessages([newMessage])
-      }, 500)
-    }
-    if (character === "boy") {
-      const newMessage: Message = {
-        content:
-          "こんにちは！美容業界のこと、何でも聞いてくれるんだね？なんでも答えるから、遠慮せずに聞いてみてよ！",
-        sender: "receiver",
-      }
-      setMessages([])
-      setTimeout(() => {
-        setMessages([newMessage])
-      }, 500)
-    }
+    scrollToBottom()
+  }, [messages, chatscroll])
+  useEffect(() => {
+    setMessages([])
   }, [character])
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -113,36 +112,6 @@ const ChatApp = ({
     }
   }
 
-  const getResponse = async (inputValue: any) => {
-    setStatus("loading")
-    let avatartype: number = 0
-    if (character === "boy") {
-      avatartype = 0
-    } else {
-      avatartype = 1
-    }
-    try {
-      const response = await axios.post(
-        "https://senju-api.willeder.com/chatbot",
-        {
-          question: inputValue,
-          avatorType: avatartype,
-        }
-      )
-      const data = await response.data
-
-      setStatus("success")
-      const newMessage: Message = {
-        content: data,
-        sender: "receiver",
-      }
-
-      setMessages((prevInput) => [...prevInput, newMessage])
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleSendMessage = async () => {
     if (inputValue.trim() === "") {
       return
@@ -151,9 +120,11 @@ const ChatApp = ({
       content: inputValue,
       sender: "sender",
     }
+    // console.log(inputValue)
+    socket.emit("message", inputValue)
 
     setMessages((prevInput) => [...prevInput, newMessage])
-    getResponse(inputValue)
+    // getResponse(inputValue)
     setInputValue("")
   }
 
@@ -427,9 +398,10 @@ const ChatApp = ({
             <div className="icons">
               <MessengerSmile className="messenger-logo" />
             </div>
-            <button onClick={handleSendMessage} disabled={status === "loading"}>
-              {/* <SendLogo className="logo send" /> */}
-            </button>
+            <button
+              onClick={handleSendMessage}
+              disabled={status === "loading"}
+            ></button>
           </div>
           <div className="outer-icons">
             <MessengerLike className="messenger-logo" />
@@ -446,9 +418,7 @@ const ChatApp = ({
           </div>
 
           <div className="input-container">
-            <div className="icons">
-              {/* <InstagramCamera className="logo" /> */}
-            </div>
+            <div className="icons"></div>
             <input
               type="text"
               value={inputValue}
