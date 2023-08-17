@@ -50,9 +50,7 @@ import { io } from "socket.io-client"
 
 const URL = "https://express-socket-hyg3.onrender.com/"
 
-export const socket = io(URL, {
-  withCredentials: true,
-})
+export const socket = io(URL)
 
 interface Message {
   content: string
