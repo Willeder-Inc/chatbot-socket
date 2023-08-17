@@ -50,7 +50,9 @@ import { io } from "socket.io-client"
 
 const URL = "https://express-socket-hyg3.onrender.com/"
 
-export const socket = io(URL)
+export const socket = io(URL, {
+  withCredentials: true,
+})
 
 interface Message {
   content: string
@@ -100,7 +102,6 @@ const ChatApp = ({
   useEffect(() => {
     setMessages([])
   }, [character])
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
