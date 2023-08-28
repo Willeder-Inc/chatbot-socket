@@ -4,7 +4,7 @@ import "./TypewriterAnimation.css" // Add the CSS file for styling
 interface AnimationProps {
   text: string
   setScroll?: React.Dispatch<React.SetStateAction<boolean>>
-  setVideoPlay: React.Dispatch<React.SetStateAction<boolean>>
+  setVideoPlay?: React.Dispatch<React.SetStateAction<boolean>>
   videoId: string
   minSpeed?: number
   maxSpeed?: number
