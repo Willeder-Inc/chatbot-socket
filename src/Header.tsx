@@ -7,6 +7,10 @@ import { ReactComponent as TwitterLogo } from "./assests/icons/twitter.svg"
 import { ReactComponent as LineLogo } from "./assests/icons/line.svg"
 import { ReactComponent as MessengerLogo } from "./assests/icons/messenger.svg"
 import { ReactComponent as InstagramLogo } from "./assests/icons/ig.svg"
+
+import morikoshiIcon from "./assests/icons/morikoshi.png"
+import manIcon from "./assests/icons/man.png"
+import womanIcon from "./assests/icons/woman.png"
 interface HeaderProps {
   theme: string
   setTheme: React.Dispatch<React.SetStateAction<string>>
@@ -56,12 +60,16 @@ const Header = ({ theme, setTheme, setCharacter }: HeaderProps) => {
 
   const character = [
     {
-      label: <img src={boyIcon} alt="boy" className="characterIcon" />,
-      value: "boy",
+      label: <img src={manIcon} alt="boy" className="characterIcon" />,
+      value: "man",
     },
     {
-      label: <img src={girlIcon} alt="boy" className="characterIcon" />,
-      value: "girl",
+      label: <img src={womanIcon} alt="boy" className="characterIcon" />,
+      value: "woman",
+    },
+    {
+      label: <img src={morikoshiIcon} alt="boy" className="characterIcon" />,
+      value: "morikoshi",
     },
   ]
   const handleSelectChange = (selectedOption: Option) => {

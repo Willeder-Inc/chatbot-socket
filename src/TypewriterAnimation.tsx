@@ -5,6 +5,7 @@ interface AnimationProps {
   text: string
   setScroll?: React.Dispatch<React.SetStateAction<boolean>>
   setVideoPlay: React.Dispatch<React.SetStateAction<boolean>>
+  videoId: string
   minSpeed?: number
   maxSpeed?: number
 }
@@ -15,13 +16,17 @@ const TypewriterAnimation = ({
   setVideoPlay,
   minSpeed = 10,
   maxSpeed = 50,
+  videoId,
+
 }: AnimationProps) => {
   const [currentText, setCurrentText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [vidPlay, setvidPlay] = useState(false)
+
 
   useEffect(() => {
     if (currentIndex < text.length) {
-      setVideoPlay(true)
+      setvidPlay(true)
       const typingTimer = setTimeout(() => {
         setCurrentText((prevText) => prevText + text[currentIndex])
         setCurrentIndex((prevIndex) => prevIndex + 1)
@@ -30,11 +35,22 @@ const TypewriterAnimation = ({
       return () => {
         clearTimeout(typingTimer)
         // setScroll(false)
-        setVideoPlay(false)
+        setvidPlay(false)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, text])
+
+   useEffect(() => {
+    let vid = document.getElementById(videoId) as HTMLVideoElement
+    // vidPlay ? vid.play() : vid.pause()
+    if (vidPlay) {
+      vid.play()
+    } else {
+      vid.pause()
+      vid.currentTime = 0
+    }
+  }, [vidPlay, videoId])
 
   const getRandomSpeed = () => {
     return Math.floor(Math.random() * (maxSpeed - minSpeed + 1) + minSpeed)

@@ -39,8 +39,21 @@ import { ReactComponent as LineSmile } from "./assests/icons/line/smile.svg"
 import boyIcon from "./assests/icons/boy.png"
 import girlIcon from "./assests/icons/girl.png"
 
+import morikoshiIcon from "./assests/icons/morikoshi.png"
+import manIcon from "./assests/icons/man.png"
+import womanIcon from "./assests/icons/woman.png"
+
 import boyVideo from "./assests/og.mp4"
 import girlVideo from "./assests/girl.mp4"
+
+import manVideo from "./assests/man_c.mp4"
+import manVideoLine from "./assests/man_line_c.mp4"
+
+import womanVideo from "./assests/woman.mp4"
+import womanVideoLine from "./assests/woman_line.mp4"
+
+import morikoshiVideo from "./assests/morikoshi.mp4"
+import morikoshiVideoLine from "./assests/morikoshi_line.mp4"
 
 // import axios from "axios"
 import { Loader } from "@mantine/core"
@@ -127,6 +140,58 @@ const ChatApp = ({
     setInputValue("")
   }
 
+  const getAvator = (type: string) => {
+    switch (type) {
+      case "man":
+        return manVideo
+      case "woman":
+        return womanVideo
+      case "morikoshi":
+        return morikoshiVideo
+      default:
+        return manVideo
+    }
+  }
+
+  const getAvatorLine = (type: string) => {
+    switch (type) {
+      case "man":
+        return manVideoLine
+      case "woman":
+        return womanVideoLine
+      case "morikoshi":
+        return morikoshiVideoLine
+      default:
+        return manVideoLine
+    }
+  }
+
+  const getAvatorIcon = (type: string) => {
+    switch (type) {
+      case "man":
+        return manIcon
+      case "woman":
+        return womanIcon
+      case "morikoshi":
+        return morikoshiIcon
+      default:
+        return manIcon
+    }
+  }
+
+  const getAvatorName = (type: string) => {
+    switch (type) {
+      case "man":
+        return "Avator 1"
+      case "woman":
+        return "Avator 2"
+      case "morikoshi":
+        return "Morikoshi"
+      default:
+        return "Avator 1"
+    }
+  }
+
   return (
     <div className="chat-app" data-theme={theme}>
       {theme === "twitter" ? (
@@ -134,11 +199,11 @@ const ChatApp = ({
           <TwitterArrow style={{ marginLeft: 10 }} />
           <div className="user">
             <img
-              src={character === "boy" ? boyIcon : girlIcon}
+              src={getAvatorIcon(character)}
               alt="boy logo"
               className="profile"
             />
-            <h4>{character === "boy" ? "Avatar 0" : "Avatar 1"}</h4>
+            <h4>{getAvatorName(character)}</h4>
           </div>
           <div className="icons" style={{ marginRight: 10 }}>
             <TwitterInfo className="twitter-logo" />
@@ -150,11 +215,11 @@ const ChatApp = ({
           <TwitterArrow style={{ marginLeft: 10 }} />
           <div className="user">
             <img
-              src={character === "boy" ? boyIcon : girlIcon}
+              src={getAvatorIcon(character)}
               alt="boy logo"
               className="profile"
             />
-            <h4>{character === "boy" ? "Avatar 0" : "Avatar 1"}</h4>
+            <h4>{getAvatorName(character)}</h4>
           </div>
           <div className="icons" style={{ marginRight: 10, gap: 10 }}>
             <InstagramCall className="instagram-logo" />
@@ -173,11 +238,11 @@ const ChatApp = ({
           />
           <div className="user">
             <img
-              src={character === "boy" ? boyIcon : girlIcon}
+              src={getAvatorIcon(character)}
               alt="boy logo"
               className="profile"
             />
-            <h4>{character === "boy" ? "Avatar 0" : "Avatar 1"}</h4>
+            <h4>{getAvatorName(character)}</h4>
           </div>
           <div className="icons" style={{ marginRight: 10, gap: 10 }}>
             <img
@@ -206,11 +271,11 @@ const ChatApp = ({
           <MessengerArrow style={{ marginLeft: 10 }} />
           <div className="user">
             <img
-              src={character === "boy" ? boyIcon : girlIcon}
+              src={getAvatorIcon(character)}
               alt="boy logo"
               className="profile"
             />
-            <h4>{character === "boy" ? "Avatar 0" : "Avatar 1"}</h4>
+            <h4>{getAvatorName(character)}</h4>
           </div>
           <div className="icons" style={{ marginRight: 10 }}>
             <MessengerCall className="messenger-logo" />
@@ -241,7 +306,44 @@ const ChatApp = ({
           >
             {message.sender === "receiver" && (
               <>
-                <div className="video-wrapper">
+              {theme === "line" ? (
+                  <div className="video-wrapper">
+                    <video
+                      width="100%"
+                      height="100%"
+                      muted
+                      // autoPlay
+                      playsInline
+                      id={`video${index}`}
+                      key={getAvatorLine(character)}
+                      loop={true}
+                    >
+                      <source
+                        src={getAvatorLine(character)}
+                        type="video/mp4"
+                      ></source>
+                    </video>
+                  </div>
+                ) : (
+                  <div className="video-wrapper">
+                    <video
+                      width="100%"
+                      height="100%"
+                      muted
+                      // autoPlay
+                      playsInline
+                      id={`video${index}`}
+                      loop={true}
+                      key={getAvator(character)}
+                    >
+                      <source
+                        src={getAvator(character)}
+                        type="video/mp4"
+                      ></source>
+                    </video>
+                  </div>
+                )}
+                {/* <div className="video-wrapper">
                   <video
                     width="100%"
                     height="100%"
@@ -257,7 +359,7 @@ const ChatApp = ({
                       <source src={girlVideo} type="video/mp4"></source>
                     )}
                   </video>
-                </div>
+                </div> */}
               </>
             )}
             {message.sender === "receiver" ? (
@@ -269,6 +371,7 @@ const ChatApp = ({
                       text={message.content}
                       setScroll={setchatScroll}
                       setVideoPlay={setvideoLoop}
+                      videoId={`video${index}`}
                     />
                   ) : (
                     message.content
