@@ -36,8 +36,8 @@ import LineMenu from "./assests/icons/line/menu.png"
 import LineArrow from "./assests/icons/line/arrow.png"
 import { ReactComponent as LineSmile } from "./assests/icons/line/smile.svg"
 
-import boyIcon from "./assests/icons/boy.png"
-import girlIcon from "./assests/icons/girl.png"
+// import boyIcon from "./assests/icons/boy.png"
+// import girlIcon from "./assests/icons/girl.png"
 
 import morikoshiIcon from "./assests/icons/morikoshi.png"
 import manIcon from "./assests/icons/man.png"
@@ -78,7 +78,7 @@ const ChatApp = ({
   character: string
 }) => {
   const [status, setStatus] = useState<string>("success")
-  const [videoLoop, setvideoLoop] = useState<boolean>(false)
+  // const [videoLoop, setvideoLoop] = useState<boolean>(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [chatscroll, setchatScroll] = useState<boolean>(false)
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
@@ -303,7 +303,7 @@ const ChatApp = ({
                     <TypewriterAnimation
                       text={message.content}
                       setScroll={setchatScroll}
-                      setVideoPlay={setvideoLoop}
+                      // setVideoPlay={setvideoLoop}
                       videoId={`video${index}`}
                     />
                   ) : (
