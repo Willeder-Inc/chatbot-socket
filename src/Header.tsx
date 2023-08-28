@@ -1,8 +1,9 @@
 import React from "react"
 import "./Header.css"
 import CustomSelect from "./CustomSelect"
-import boyIcon from "./assests/icons/boy.png"
-import girlIcon from "./assests/icons/girl.png"
+import morikoshiIcon from "./assests/icons/morikoshi.png"
+import manIcon from "./assests/icons/man.png"
+import womanIcon from "./assests/icons/woman.png"
 import { ReactComponent as TwitterLogo } from "./assests/icons/twitter.svg"
 import { ReactComponent as LineLogo } from "./assests/icons/line.svg"
 import { ReactComponent as MessengerLogo } from "./assests/icons/messenger.svg"
@@ -56,12 +57,16 @@ const Header = ({ theme, setTheme, setCharacter }: HeaderProps) => {
 
   const character = [
     {
-      label: <img src={boyIcon} alt="boy" className="characterIcon" />,
-      value: "boy",
+      label: <img src={manIcon} alt="boy" className="characterIcon" />,
+      value: "man",
     },
     {
-      label: <img src={girlIcon} alt="boy" className="characterIcon" />,
-      value: "girl",
+      label: <img src={womanIcon} alt="boy" className="characterIcon" />,
+      value: "woman",
+    },
+    {
+      label: <img src={morikoshiIcon} alt="boy" className="characterIcon" />,
+      value: "morikoshi",
     },
   ]
   const handleSelectChange = (selectedOption: Option) => {

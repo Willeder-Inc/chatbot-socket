@@ -281,6 +281,10 @@
   border-radius: 10px;
   overflow: hidden;
   background-size: cover;
+  img {
+    height: 90%;
+    width: 100%;
+  }
 }
 
 @keyframes typing {
@@ -472,6 +476,10 @@
     overflow: hidden;
     background-size: cover;
     background-color: #fefdfd;
+    img {
+      height: 90%;
+      width: 100%;
+    }
   }
 
   .input-area input {
