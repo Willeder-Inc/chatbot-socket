@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "willeder-official"
+  },
+  "targets": {
+    "willeder-official": {
+      "hosting": {
+        "senjyu-socket-2": [
+          "senjyu-socket-2"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

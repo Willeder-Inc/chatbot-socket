@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "target": "senjyu-socket-2",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
