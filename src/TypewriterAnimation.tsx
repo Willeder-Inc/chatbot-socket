@@ -48,6 +48,13 @@ const TypewriterAnimation = ({
       vid.pause()
       vid.currentTime = 0
     }
+    if (text.length < 30) {
+      vid.play()
+      setTimeout(function () {
+        vid.pause()
+        vid.currentTime = 0
+      }, 3 * 1000)
+    }
   }, [vidPlay, videoId])
 
   const getRandomSpeed = () => {
