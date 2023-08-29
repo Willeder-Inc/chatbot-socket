@@ -17,12 +17,10 @@ const TypewriterAnimation = ({
   minSpeed = 10,
   maxSpeed = 50,
   videoId,
-
 }: AnimationProps) => {
   const [currentText, setCurrentText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [vidPlay, setvidPlay] = useState(false)
-
 
   useEffect(() => {
     if (currentIndex < text.length) {
@@ -41,7 +39,7 @@ const TypewriterAnimation = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, text])
 
-   useEffect(() => {
+  useEffect(() => {
     let vid = document.getElementById(videoId) as HTMLVideoElement
     // vidPlay ? vid.play() : vid.pause()
     if (vidPlay) {
@@ -50,7 +48,13 @@ const TypewriterAnimation = ({
       vid.pause()
       vid.currentTime = 0
     }
-  }, [vidPlay, videoId])
+    if (text.length < 30) {
+      vid.play()
+      setTimeout(function () {
+        vid.pause()
+      }, 3 * 1000)
+    }
+  }, [vidPlay, videoId,text])
 
   const getRandomSpeed = () => {
     return Math.floor(Math.random() * (maxSpeed - minSpeed + 1) + minSpeed)
