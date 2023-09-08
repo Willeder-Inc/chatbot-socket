@@ -1,8 +1,12 @@
 .mainApp {
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   height: 100vh;
   width: 100vw;
   position: relative;
+}
+
+.mainApp.black {
+  background-color: black;
 }
 .skipWrapper {
   position: absolute;
