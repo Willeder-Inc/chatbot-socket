@@ -57,7 +57,6 @@ const MainApp = () => {
             <source src={BG} type="video/mp4"></source>
           </video>
           <div className="controlWrapper">
-            <h1>skjdh</h1>
             <Link to={"/chat"}>
               <button>Activate I Producer</button>
             </Link>
