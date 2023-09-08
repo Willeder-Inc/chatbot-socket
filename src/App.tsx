@@ -12,6 +12,7 @@ import womanVideoLine from "./assests/woman_line.mp4"
 
 import morikoshiVideo from "./assests/morikoshi.mp4"
 import morikoshiVideoLine from "./assests/morikoshi_line.mp4"
+import { Outlet } from "react-router"
 
 function App() {
   const [theme, setTheme] = useState("twitter")
@@ -42,45 +43,7 @@ function App() {
   }
   return (
     <div className="App">
-      {/* <Header theme={theme} setTheme={setTheme} setCharacter={setCharacter} />
-      <Chat theme={theme} character={character} /> */}
-      <Header theme={theme} setTheme={setTheme} setCharacter={setCharacter} />
-      {/* <div style={{ color: "#000", flex: 1 }}>test</div> */}
-      <Iphone>
-        <Chat
-          theme={theme}
-          setTheme={setTheme}
-          character={character}
-          setCharacter={setCharacter}
-        />
-      </Iphone>
-      {theme !== "line" ? (
-        <video
-          width="100%"
-          height="100%"
-          muted
-          // autoPlay
-          id="vidbg"
-          playsInline
-          key={getAvator(character)}
-          loop={true}
-        >
-          <source src={getAvator(character)} type="video/mp4"></source>
-        </video>
-      ) : (
-        <video
-          width="100%"
-          height="100%"
-          muted
-          // autoPlay
-          id="vidbg"
-          playsInline
-          key={getAvatorLine(character)}
-          loop={true}
-        >
-          <source src={getAvatorLine(character)} type="video/mp4"></source>
-        </video>
-      )}
+      <Outlet />
     </div>
   )
 }
