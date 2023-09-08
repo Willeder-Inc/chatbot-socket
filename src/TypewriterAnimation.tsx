@@ -53,6 +53,7 @@ const TypewriterAnimation = ({
       setTimeout(function () {
         vid.pause()
       }, 3 * 1000)
+      vid.currentTime = 0
     }
   }, [vidPlay, videoId,text])
 

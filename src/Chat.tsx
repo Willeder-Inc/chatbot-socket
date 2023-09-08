@@ -104,12 +104,14 @@ const ChatApp = ({
       setMessages((prevInput) => [...prevInput, newMessage])
       setStatus("success")
     })
+    console.log("effect")
     // eslint-disable-next-line
   }, [socket])
 
   useEffect(() => {
     scrollToBottom()
   }, [messages, chatscroll])
+
   useEffect(() => {
     setMessages([])
   }, [character])
@@ -306,7 +308,7 @@ const ChatApp = ({
           >
             {message.sender === "receiver" && (
               <>
-              {theme === "line" ? (
+                {theme === "line" ? (
                   <div className="video-wrapper">
                     <video
                       width="100%"
